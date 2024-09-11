@@ -1,0 +1,385 @@
+/* General body styles */
+body {
+    background-color: #2b2b2b; /* Dark grey background */
+    color: #ffffff; /* White text */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background-image: radial-gradient(#ffffff 1px, transparent 1px);
+    background-size: 20px 20px; /* Adjust the size of the grid */
+
+}
+
+/* Book container */
+.book-container {
+    perspective: 2000px;
+    width: 60%;
+    max-width: 1000px;
+    height: 70%;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease;
+}
+
+
+.book-container.opened {
+    width: 100%;
+    height: 85%;
+}
+
+.book-cover-closed {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    background-image: url('/Users/kofisampong/PycharmProjects/flaskProject/static/file.jpg');
+    Background-size: cover;
+    border: 5px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    backface-visibility: hidden;
+    transition: transform 1s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.cover-text {
+    font-size: 2em;
+    color: #fff;
+}
+
+.book-pages {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+}
+
+.book-spine {
+    position: absolute;
+    width: 15px;
+    height: 100%;
+    background-color: #1a1a1a;
+    z-index: 5;
+}
+
+.book-cover {
+    position: absolute;
+    width: 100%;
+    height: 120%;
+    background-color: #1a1a1a;
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    backface-visibility: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* The book left cover that becomes the left page */
+.book-left {
+    position: absolute;
+    left: 0;
+    transform-origin: left center;
+    width: 40%;
+    height: 100%;
+    background-color: #1a1a1a; /* Cover background color */
+    border: 2px solid #ffffff;
+    z-index: 5; /* Make sure it stays above the right cover when rotating */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    backface-visibility: hidden; /* Hide the back of the cover when rotating */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transform: rotateY(0deg); /* Initially set to 0 deg to show as part of the cover */
+    transition: transform 1s ease; /* Smooth transition when rotating */
+}
+
+.book-right {
+    position: absolute;
+    right: 0;
+    transform-origin: right center;
+    width: 60%;
+    height: 94%;
+    background-color: #1a1a1a;
+    border: 2px solid #ffffff;  /* Add a solid white border to mimic a window */
+    border-radius: 5px;         /* Optional: Make corners rounded for a modern desktop feel */
+    z-index: 1;
+    display: flex;
+    flex-direction: column;     /* Allows the status bar to stay at the bottom */
+    justify-content: space-between; /* Make sure content and status bar align properly */
+    overflow: hidden;
+    backface-visibility: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transform: rotateY(180deg); /* Initially hide the right cover */
+    padding: 20px;              /* Add some padding to the right page */
+
+    background-image: url('/Users/kofisampong/PycharmProjects/flaskProject/static/raspic.jpeg'); /* Path to your image */
+    background-size: cover;      /* Ensure the image covers the whole page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+}
+.status-bar {
+    background-color: #333333;
+    color: #f1f1f1;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+    font-size: 0.9em;
+    border-top: 1px solid #555555;
+    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.3); /* Inner shadow for a realistic effect */
+}
+
+/* Make the window look OS-like */
+.status-bar div {
+    display: flex;
+    align-items: center;
+}
+
+/* Style the time and system status */
+.status-bar-time {
+    font-size: 0.8em;
+    color: #cccccc;
+}
+
+.status-bar-username {
+    font-size: 0.8em;
+    color: #cccccc;
+}
+
+/* Icons for the status bar */
+.status-bar-icons {
+    display: flex;
+}
+
+.status-bar-icon {
+    width: 15px;
+    height: 15px;
+    background-color: #ffffff; /* Placeholder for icon */
+    margin-left: 10px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+}
+/* Adjust the opening and closing animations */
+.book-container.opened .book-cover-closed {
+    transform: rotateY(-180deg);
+}
+
+.book-container.opened .book-left {
+    transform: rotateY(0deg); /* Left cover rotates to the left */
+    transform: scaleX(85%);
+    font-family: Monaco;
+    font-size: small;
+}
+
+.book-container.opened .book-right {
+    transform: rotateY(0deg); /* Right cover rotates to the right */
+    transform: translateX(35%);
+    transform: scaleX(105%);
+    background-image: url("/Users/kofisampong/PycharmProjects/flaskProject/static/raspic.jpeg");
+
+}
+
+.book-pages {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+}
+.page-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.page-content h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.page-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+#landingPageContent {
+    display: block;
+}
+
+/* Window Styles */
+.window {
+    display: none;
+    position: absolute;
+    background-color: #1a1a1a;
+    border: 2px solid #ffffff;
+    width: 80%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    border-radius: 8px;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    overflow-y: auto;
+}
+
+.title-bar {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-bar span {
+    font-weight: bold;
+}
+
+.close-btn {
+    background-color: #ff0000;
+    border: none;
+    color: #ffffff;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.close-btn:hover {
+    background-color: #cc0000;
+}
+
+.window-content {
+    padding: 20px;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    margin-bottom: 15px;
+}
+
+.dropdown-btn {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.dropdown-content {
+    display: none;
+    background-color: #3b3b3b;
+    padding: 10px;
+    margin-top: 5px;
+    border-left: 4px solid #ffffff;
+}
+
+.dropdown-btn:focus + .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+
+/* General styling for desktop icons */
+.desktop-icon {
+    width: 80px; /* Width of the icon */
+    height: 100px; /* Height of the icon */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    color: #ffffff; /* Text color for the icon */
+    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; /* Font for desktop icons */
+    font-size: 14px;
+    user-select: none; /* Prevent text selection */
+    transition: transform 0.2s ease-in-out;
+    position: relative; /* For any additional positioning */
+}
+
+/* Folder icon image */
+.folder-icon {
+    width: 50px; /* Icon size */
+    height: 50px;
+    margin-bottom: 5px; /* Space between the icon and the text */
+}
+
+/* Hover effect to simulate OS icon behavior */
+.desktop-icon:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Optional: Active/Click effect */
+.desktop-icon:active {
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/* Text below the icon */
+.desktop-icon span {
+    font-size: 12px;
+    color: #ffffff;
+    margin-top: 5px;
+}
+/* Terminal container to simulate a terminal window */
+.terminal-container {
+    width: 100%; /* Adjust width */
+    height: 100%;
+    background-color: #000000; /* Black background for terminal */
+    color: #f1f1f1; /* Classic green terminal text */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for terminal */
+    border: 3px solid #FFFFFF
+
+; /* Green border for terminal window */
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+/* Terminal screen */
+.terminal-screen {
+    width: 100%;
+    height: 100%;
+    white-space: pre-wrap; /* Preserve white spaces for terminal look */
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* Typing cursor effect */
+.terminal-output::after {
+    content: '|'; /* Terminal cursor */
+    animation: blink 0.8s infinite; /* Blinking cursor */
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+
