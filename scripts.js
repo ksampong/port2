@@ -47,7 +47,7 @@ const terminalText = `
 Booting up system...
 Checking memory... [OK]
 Checking disk... [OK]
-Loading Kofi's Journal... [OK]
+Loading Experiences... [OK]
 System ready.
 
 My name is Kofi. I am an aspiring engineer trying to learn and build up my skills and knowledge. This is a journal where I record my progress.
