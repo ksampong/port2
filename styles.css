@@ -166,8 +166,14 @@ body {
 /* Icons for the status bar */
 .status-bar-icons {
     display: flex;
+    align-items: center;
 }
 
+.status-bar-icons i {
+    font-size: 1em; /* Adjust the size as needed */
+    color: #ffffff; /* Icon color */
+    margin-left: 10px; /* Space between icons */
+}
 .status-bar-icon {
     width: 15px;
     height: 15px;
@@ -297,13 +303,22 @@ body {
 .dropdown-content:hover {
     display: block;
 }
-
-
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px; /* Adjust the gap between icons */
+}
+.desktop-icon-container{
+    width:100px;
+    text-align: center;
+}
 /* General styling for desktop icons */
 .desktop-icon {
     width: 80px; /* Width of the icon */
     height: 100px; /* Height of the icon */
-    display: flex;
+    display: block;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -321,7 +336,8 @@ body {
 .folder-icon {
     width: 50px; /* Icon size */
     height: 50px;
-    margin-bottom: 5px; /* Space between the icon and the text */
+    margin: 0 auto;
+    display: block;/* Space between the icon and the text */
 }
 
 /* Hover effect to simulate OS icon behavior */
@@ -336,6 +352,7 @@ body {
 
 /* Text below the icon */
 .desktop-icon span {
+    display: block;
     font-size: 12px;
     color: #ffffff;
     margin-top: 5px;
