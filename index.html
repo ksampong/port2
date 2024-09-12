@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio - Book Opening</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="book-container" id="book">
@@ -32,23 +33,23 @@ Please bear with me as the site is still under construction. For now, feel free 
     <div class="container">
         <h1></h1>
 
-        <div class="desktop-icon" onclick="openWindow('projectsWindow')">
+        <div class="desktop-icon-container" onclick="openWindow('projectsWindow')">
             <img src="foldericon.png" alt="Papers Folder Icon" class="folder-icon">
             <span>Projects</span>
         </div>
-        <div class="desktop-icon" onclick="openWindow('interestsWindow')">
+        <div class="desktop-icon-container" onclick="openWindow('interestsWindow')">
             <img src="foldericon.png" alt="Papers Folder Icon" class="folder-icon">
             <span>Interests</span>
         </div>
-        <div class="desktop-icon" onclick="openWindow('aboutWindow')">
+        <div class="desktop-icon-container" onclick="openWindow('aboutWindow')">
             <img src="foldericon.png" alt="Papers Folder Icon" class="folder-icon">
             <span>About</span>
         </div>
-        <div class="desktop-icon" onclick="openWindow('papersWindow')">
+        <div class="desktop-icon-container" onclick="openWindow('papersWindow')">
             <img src="foldericon.png" alt="Papers Folder Icon" class="folder-icon">
             <span>Papers</span>
         </div>
-        <div class="desktop-icon" onclick="openWindow('miscWindow')">
+        <div class="desktop-icon-container" onclick="openWindow('miscWindow')">
             <img src="foldericon.png" alt="Papers Folder Icon" class="folder-icon">
             <span>Misc</span>
         </div>
@@ -65,9 +66,8 @@ Please bear with me as the site is still under construction. For now, feel free 
         <div class="status-bar-right">
             <span class="status-bar-time" id="statusBarTime"></span>
             <div class="status-bar-icons">
-                <div class="status-bar-icon"></div>
-                <div class="status-bar-icon"></div>
-                <div class="status-bar-icon"></div>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-full"></i>
             </div>
         </div>
     </div>
@@ -145,9 +145,25 @@ Please bear with me as the site is still under construction. For now, feel free 
                                         </div>
                                     </div>
                                     <div class="dropdown">
-                                        <button class="dropdown-btn">Interest 3</button>
+                                        <button class="dropdown-btn">Hardware, Embedded Systems, Circuit Design, and Automation</button>
                                         <div class="dropdown-content">
-                                            <p>Description of Interest 3...</p>
+                                            <p>This has been my longest-running fascination, spanning much of my life. I’ll skip over some details and focus on the key milestones in my journey through this field.</p>
+                                            <h2>Early Exploration: Raspberry Pi and Robotics</h2>
+                                            <p>n Year 10, after years of anticipation, I finally got my first Raspberry Pi. My goal was to build a robotic arm, as I had always believed I was capable of it—what I needed were the right tools. I sourced some servos and jumper cables and repurposed an old desk lamp as the frame. The idea was simple: mount the servos to the hinges and base, providing three axes of movement. I learned to control the servos, but when it came time to assemble the arm, I encountered a challenge: the servos lacked the power to move the frame.</p>
+                                            <p>I tried various solutions, like removing the springs that added tension to the frame or considering stronger servos. Unfortunately, accessing additional parts was difficult at the time. Though I learned a lot through this experience, I had to shelve the project. In hindsight, while it taught me resourcefulness, I regretted not pushing further with other potential projects throughout high school. Nevertheless, I gained practical skills by experimenting with relay circuits, automating our home’s gate, and creating smart fan switches. My passion continued to grow despite the interruptions of attending a boarding school with limited access to technology.
+
+</p>
+                                            <h2>Robotics Club and Early Internship</h2>
+                                            <p>During high school, I had a brief stint with the robotics club, where we used LEGO Technic sets to explore various projects. Around the same time, I also interned briefly at Stanbic Bank Ghana, where I was involved in software automation using Python and the Selenium module, which deepened my interest in automation.</p>
+                                            <p>Though my progress was sporadic during this period, these experiences were invaluable in laying the foundation for the more serious projects I would take on later.</p>
+                                            <h2>University and Design Challenges</h2>
+                                            <p>At university, my interest in hardware was rekindled when I participated in the Teddy Bear Wheelchair Challenge for a design class during my first semester. The task was to design and build an autonomous wheelchair for a teddy bear, using Arduino, basic motors, and parts from Meccano sets. My team built one of the top-performing wheelchairs in the competition, which not only reignited my enthusiasm but also gave me hands-on experience with autonomous systems.
+
+/p>
+                                            <h2>Advancing My Skills: The 6502 Project and Summer Learning</h2>
+                                            <p>That summer, I set an ambitious goal for myself: to build a working 6502 microprocessor while following Ben Eater’s YouTube series. Though other projects took priority, and I put the 6502 project on hold, I made progress by building 555 timer circuits in both astable and monostable configurations. These projects helped me sharpen my understanding of basic electronics and circuit design.</p>
+                                            <h2>Current Focus: Deepening My Knowledge</h2>
+                                            <p>Currently, I am working through The Art of Electronics by Horowitz and Hill, aiming for a steady progression in my knowledge. This book serves as my guide for refining my skills, and as I advance, I will continue documenting my journey in this journal.</p>
                                         </div>
                                     </div>
                                 </div>
