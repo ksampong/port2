@@ -83,25 +83,29 @@ Please bear with me as the site is still under construction. For now, feel free 
                                     <button class="close-btn" onclick="closeWindow('projectsWindow')">X</button>
                                 </div>
                                <div class="window-content">
+                               <div class="window-content">
     <div class="dropdown">
         <button class="dropdown-btn">6502 Emulator</button>
         <div class="dropdown-content">
-            <p><strong>Background:</strong> This project stems from my long-standing interest in low-level computing and processor design.</p>
-            <p><strong>Motivation:</strong> A year ago, I felt my technical knowledge and skills weren't deep enough to match my interests. I decided to take on hands-on projects to improve.</p>
-            <p><strong>Journey:</strong> I initially set out to build a physical 6502-based computer on a breadboard, inspired by Ben Eater's series. However, I found my understanding lacking and pivoted to writing an emulator to better grasp the instruction set.</p>
-            <p><strong>Technical Overview:</strong></p>
+            <p><strong>Background:</strong> This project is the result of multiple interests I've had over time, including low-level computing and processor design. It ties back to my fascination with how computer architecture operates at the most fundamental level. The motivation to pursue this came from realizing that I lacked a deep technical understanding of many of my interests in electronics and programming. I wanted to bridge that gap with hands-on experience and decided to work on projects that would challenge me.</p>
+            <p><strong>Motivation:</strong> About a year ago, I felt the need to build technical skills that could match my wide-ranging interests. I realized that while I had a lot of theoretical knowledge, I wasn’t fully equipped to bring my ideas to life. To remedy this, I started taking on projects and exploring textbooks in areas where I felt weak. The first project I took up was inspired by Ben Eater's YouTube series on building a 6502-based computer. However, after gathering some parts and getting started, I quickly realized my abilities were not where I wanted them to be, and the project stalled.</p>
+            <p><strong>Journey:</strong> After the initial setback, I decided to pivot my focus to emulating the 6502 processor. I started by writing the CPU and memory behavior, initially copying instruction set behavior from 6502.org. While doing so, I didn’t fully understand the underlying principles, but I gained a better grasp as I continued. Over time, I worked on implementing all the addressing modes and the fetch-execute cycle, which really helped me understand how these low-level systems operate.</p>
+            <p>After making significant progress with the emulator, I managed to test a handful of instructions and eventually completed the entire instruction set. This journey has taught me not only how to emulate hardware but also how to structure a project effectively and persist through challenges. While I’m now able to emulate the 6502 processor's behavior with reasonable accuracy, my next steps involve unit testing to ensure everything works as expected and possibly developing tools like an instruction visualizer or a compiler for the emulator.</p>
+            <p><strong>Technical Breakdown:</strong></p>
             <ul>
-                <li><strong>CPU Core:</strong> Implements the 6502's registers, status flags, and execution cycle.</li>
-                <li><strong>Memory System:</strong> Emulates 64KB of memory, including stack and zero-page behavior.</li>
-                <li><strong>Instruction Execution:</strong> Supports the full 6502 instruction set with accurate flag updates.</li>
-                <li><strong>Addressing Modes:</strong> Implements all documented addressing modes, including indirect and indexed.</li>
-                <li><strong>Emulation Cycle:</strong> Follows fetch-decode-execute logic, ensuring correctness.</li>
-                <li><strong>Testing:</strong> Verified against test programs; further unit testing planned.</li>
-                <li><strong>Future Work:</strong> Cycle-accurate execution, debugging tools, and visualization.</li>
+                <li><strong>CPU Core:</strong> The CPU core in the emulator models the 6502's registers (A, X, Y, and status flags), and its cycles are based on the fetch-decode-execute cycle. The execution logic handles each instruction's opcode and manages the status flags for carry, zero, negative, and overflow.</li>
+                <li><strong>Memory System:</strong> I’ve emulated the 6502’s memory model, including the zero-page (addresses 0-255), stack, and the full 64KB address space. Memory management is key to the functioning of the processor, as many instructions rely on specific memory regions.</li>
+                <li><strong>Instruction Execution:</strong> I’ve implemented the full 6502 instruction set, including arithmetic, logic, comparison, and control flow operations. Each instruction updates the processor’s flags appropriately, based on the operation’s result.</li>
+                <li><strong>Addressing Modes:</strong> All of the 6502’s addressing modes have been implemented, including direct, indirect, indexed, and relative addressing. This gives the emulator flexibility in handling different types of operands.</li>
+                <li><strong>Emulation Cycle:</strong> The emulator follows a fetch-decode-execute cycle to simulate the actual process of instruction execution. Each instruction is fetched from memory, decoded, and executed in sequence, mimicking the behavior of the original 6502 processor.</li>
+                <li><strong>Testing:</strong> I’ve written test cases to verify the correct execution of several 6502 instructions. Currently, the testing is still in progress, with a focus on ensuring accuracy in how flags are set and how each instruction behaves.</li>
+                <li><strong>Future Work:</strong> Moving forward, I plan to implement cycle-accurate emulation, which will allow for a more detailed representation of the 6502’s timing. I also plan to develop debugging tools, such as a visualizer for instructions, and explore the possibility of creating a simple compiler to work with the emulator.</li>
             </ul>
         </div>
     </div>
 </div>
+
+
 
                                     <div class="dropdown">
                                         <button class="dropdown-btn">Project 2</button>
