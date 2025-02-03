@@ -82,13 +82,27 @@ Please bear with me as the site is still under construction. For now, feel free 
                                     <span>Projects</span>
                                     <button class="close-btn" onclick="closeWindow('projectsWindow')">X</button>
                                 </div>
-                                <div class="window-content">
-                                    <div class="dropdown">
-                                        <button class="dropdown-btn">Project 1</button>
-                                        <div class="dropdown-content">
-                                            <p>Description of Project 1...</p>
-                                        </div>
-                                    </div>
+                               <div class="window-content">
+    <div class="dropdown">
+        <button class="dropdown-btn">6502 Emulator</button>
+        <div class="dropdown-content">
+            <p><strong>Background:</strong> This project stems from my long-standing interest in low-level computing and processor design.</p>
+            <p><strong>Motivation:</strong> A year ago, I felt my technical knowledge and skills weren't deep enough to match my interests. I decided to take on hands-on projects to improve.</p>
+            <p><strong>Journey:</strong> I initially set out to build a physical 6502-based computer on a breadboard, inspired by Ben Eater's series. However, I found my understanding lacking and pivoted to writing an emulator to better grasp the instruction set.</p>
+            <p><strong>Technical Overview:</strong></p>
+            <ul>
+                <li><strong>CPU Core:</strong> Implements the 6502's registers, status flags, and execution cycle.</li>
+                <li><strong>Memory System:</strong> Emulates 64KB of memory, including stack and zero-page behavior.</li>
+                <li><strong>Instruction Execution:</strong> Supports the full 6502 instruction set with accurate flag updates.</li>
+                <li><strong>Addressing Modes:</strong> Implements all documented addressing modes, including indirect and indexed.</li>
+                <li><strong>Emulation Cycle:</strong> Follows fetch-decode-execute logic, ensuring correctness.</li>
+                <li><strong>Testing:</strong> Verified against test programs; further unit testing planned.</li>
+                <li><strong>Future Work:</strong> Cycle-accurate execution, debugging tools, and visualization.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
                                     <div class="dropdown">
                                         <button class="dropdown-btn">Project 2</button>
                                         <div class="dropdown-content">
