@@ -107,12 +107,34 @@ Please bear with me as the site is still under construction. For now, feel free 
 
 
 
-                                    <div class="dropdown">
-                                        <button class="dropdown-btn">Project 2</button>
-                                        <div class="dropdown-content">
-                                            <p>Description of Project 2...</p>
-                                        </div>
-                                    </div>
+                                   <div class="dropdown">
+        <button class="dropdown-btn">FPGA Hierarchical 4-bit ALU</button>
+        <div class="dropdown-content">
+            <p><strong>Background:</strong> This project was part of my digital design coursework, where I designed and implemented a fully functional 4-bit Arithmetic Logic Unit (ALU) using VHDL and deployed it on an FPGA (Nexys 3). The hierarchical, modular approach ensured that each component was reusable and well-structured.</p>
+            
+            <p><strong>Motivation:</strong> While working through my digital design course, I saw this project as the perfect opportunity to reinforce and expand my hardware design skills. Rather than just completing it as an assignment, I took the time to refine my approach, ensuring I deeply understood the design principles involved. It allowed me to bridge theory with hands-on implementation, gaining experience in modular VHDL coding, FPGA synthesis, and debugging complex digital systems.</p>
+
+            <p><strong>Journey:</strong> The design process started with breaking the ALU into smaller, manageable components:</p>
+            <ul>
+                <li><strong>Half Adder & Full Adder:</strong> The core arithmetic units, responsible for basic addition operations.</li>
+                <li><strong>1-Bit Logic Unit:</strong> Implemented bitwise operations (AND, OR, XOR, NOT).</li>
+                <li><strong>1-Bit Arithmetic Unit:</strong> Combined adders and multiplexers to enable addition, subtraction, and direct pass-through operations.</li>
+                <li><strong>4-Bit ALU Composition:</strong> Integrated the smaller units into a full 4-bit ALU, with multiplexers selecting between arithmetic and logic operations.</li>
+                <li><strong>Seven-Segment Display Output:</strong> Designed a decoder to convert the 4-bit binary result into human-readable digits for FPGA output.</li>
+            </ul>
+
+            <p>Once the core ALU was functional, I synthesized it and tested it on the Nexys 3 FPGA, verifying correct operation in real-time. Debugging timing issues and ensuring proper carry propagation in arithmetic operations proved to be valuable learning experiences.</p>
+
+            <p><strong>Key Takeaways:</strong></p>
+            <ul>
+                <li>Developed modular and reusable VHDL components, reinforcing hierarchical digital design principles.</li>
+                <li>Gained hands-on experience with FPGA synthesis, debugging, and real-time hardware testing.</li>
+                <li>Strengthened my understanding of control logic and combinational vs. sequential circuit behavior.</li>
+            </ul>
+
+            <p><strong>Future Work:</strong> I plan to extend this project by adding multiplication and division functionality and exploring optimizations like carry-lookahead adders to improve performance. Another long-term goal is integrating this ALU into a simple FPGA-based CPU.</p>
+        </div>
+    </div>
                                     <div class="dropdown">
                                         <button class="dropdown-btn">Project 3</button>
                                         <div class="dropdown-content">
