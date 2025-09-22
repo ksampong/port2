@@ -1,402 +1,236 @@
-/* General body styles */
+/* ===== Base background (dotted grid + vignette) ===== */
+html, body { height: 100%; }
 body {
-    background-color: #2b2b2b; /* Dark grey background */
-    color: #ffffff; /* White text */
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-    background-image: radial-gradient(#ffffff 1px, transparent 1px);
-    background-size: 20px 20px; /* Adjust the size of the grid */
-
+  margin: 0;
+  color: #ffffff;
+  background-color: #0b0b0b;
+  background-image: radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px);
+  background-size: 18px 18px;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, Roboto, Arial, "Noto Sans";
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.55) 100%);
 }
 
-/* Book container */
+/* ===== Book container ===== */
+.book-spine { display: none !important; }  /* remove spine */
+
 .book-container {
-    perspective: 2000px;
-    width: 60%;
-    max-width: 1000px;
-    height: 70%;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 1s ease;
+  width: clamp(880px, 60vw, 1100px);
+  height: clamp(560px, 70vh, 820px);
+  position: relative;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
 }
+.book-container.opened { cursor: default; }
 
-
-.book-container.opened {
-    width: 100%;
-    height: 85%;
-}
-
-.book-cover-closed {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #333;
-    background-image: url('/Users/kofisampong/PycharmProjects/flaskProject/static/file.jpg');
-    Background-size: cover;
-    border: 5px solid #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    backface-visibility: hidden;
-    transition: transform 1s ease;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-.cover-text {
-    font-size: 2em;
-    color: #fff;
-}
-
-.book-pages {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    transform-style: preserve-3d;
-    transition: transform 1s ease;
-}
-
-.book-spine {
-    position: absolute;
-    width: 15px;
-    height: 100%;
-    background-color: #1a1a1a;
-    z-index: 5;
-}
+.book-pages { position: absolute; inset: 0; display: flex; }
 
 .book-cover {
-    position: absolute;
-    width: 100%;
-    height: 120%;
-    background-color: #1a1a1a;
-    border: 2px solid #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    backface-visibility: hidden;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  position: absolute; inset: 0;
+  background: #000;
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex; flex-direction: column;
+  overflow: hidden; backface-visibility: hidden;
+  border-radius: 0; box-shadow: none;
 }
 
-/* The book left cover that becomes the left page */
-.book-left {
-    position: absolute;
-    left: 0;
-    transform-origin: left center;
-    width: 40%;
-    height: 100%;
-    background-color: #1a1a1a; /* Cover background color */
-    border: 2px solid #ffffff;
-    z-index: 5; /* Make sure it stays above the right cover when rotating */
-    display: none;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    backface-visibility: hidden; /* Hide the back of the cover when rotating */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    transform: rotateY(0deg); /* Initially set to 0 deg to show as part of the cover */
-    transition: transform 1s ease; /* Smooth transition when rotating */
-}
+/* PRE-OPEN: show left terminal, hide right page */
+.book-left  { display: flex; z-index: 2; }
+.book-right { display: none; }
 
-.book-right {
-    position: absolute;
-    right: 0;
-    transform-origin: right center;
-    width: 60%;
-    height: 94%;
-    background-color: #1a1a1a;
-    border: 2px solid #ffffff;  /* Add a solid white border to mimic a window */
-    border-radius: 5px;         /* Optional: Make corners rounded for a modern desktop feel */
-    z-index: 1;
-    display: flex;
-    flex-direction: column;     /* Allows the status bar to stay at the bottom */
-    justify-content: space-between; /* Make sure content and status bar align properly */
-    overflow: hidden;
-    backface-visibility: hidden;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    transform: rotateY(180deg); /* Initially hide the right cover */
-    padding: 20px;              /* Add some padding to the right page */
+/* AFTER OPEN: hide left, show right only (solves height/bleed) */
+.book-container.opened .book-left  { display: none !important; }
+.book-container.opened .book-right { display: flex !important; }
 
-    background-image: url('/Users/kofisampong/PycharmProjects/flaskProject/static/raspic.jpeg'); /* Path to your image */
-    background-size: cover;      /* Ensure the image covers the whole page */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
+/* Right page layout: content fills, status bar pinned */
+.book-right { padding: 0; }
+.book-right .page-content { flex: 1 1 auto; min-height: 0; padding: 18px; color: #ffffff; }
+.book-right .status-bar    { flex: 0 0 32px; }
+
+/* Terminal (left page) */
+.terminal-container {
+  width: 100%; height: 100%;
+  background: #000;
+  color: #b6ff9b;
+  font-family: ui-monospace, Menlo, Monaco, Consolas, "Courier New", monospace;
+  border: 1px solid rgba(182,255,155,0.35);
+  text-shadow: 0 0 1px rgba(182,255,155,0.35);
+  padding: 18px; display: flex; overflow: hidden; position: relative;
 }
+.terminal-container::before {
+  content: "";
+  position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(transparent 0, transparent 2px, rgba(255,255,255,0.04) 3px);
+  mix-blend-mode: screen;
+}
+.terminal-screen { width: 100%; height: 100%; white-space: pre-wrap; font-size: 15px; letter-spacing: 0.2px; line-height: 1.55; }
+.terminal-output::after { content: '█'; margin-left: 2px; animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Desktop icons */
+.container { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; }
+.desktop-icon-container { width: 110px; text-align: center; outline: none; }
+.folder-icon { width: 56px; height: 56px; display: block; margin: 0 auto 8px; filter: brightness(1.1) saturate(0) hue-rotate(80deg); }
+.desktop-icon-container span { font-size: 13px; color: #d7d7d7; }
+.desktop-icon-container:hover .folder-icon,
+.desktop-icon-container:focus-visible .folder-icon { transform: translateY(-2px) scale(1.03); }
+
+/* Status bar (right page) */
 .status-bar {
-    background-color: #333333;
-    color: #f1f1f1;
-    height: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
-    font-size: 0.9em;
-    border-top: 1px solid #555555;
-    box-shadow: inset 0px 1px 5px rgba(0, 0, 0, 0.3); /* Inner shadow for a realistic effect */
+  background: #000; color: #ffffff;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  height: 32px; display: flex; justify-content: space-between; align-items: center; padding: 0 10px;
 }
+.status-bar-left, .status-bar-right { display: flex; align-items: center; gap: 10px; }
+.status-bar-time, .status-bar-username { color: #ffffff; }
+.status-bar-icons i { color: #ffffff; }
 
-/* Make the window look OS-like */
-.status-bar div {
-    display: flex;
-    align-items: center;
-}
-
-/* Style the time and system status */
-.status-bar-time {
-    font-size: 0.8em;
-    color: #cccccc;
-}
-
-.status-bar-username {
-    font-size: 0.8em;
-    color: #cccccc;
-}
-
-/* Icons for the status bar */
-.status-bar-icons {
-    display: flex;
-    align-items: center;
-}
-
-.status-bar-icons i {
-    font-size: 1em; /* Adjust the size as needed */
-    color: #ffffff; /* Icon color */
-    margin-left: 10px; /* Space between icons */
-}
-.status-bar-icon {
-    width: 15px;
-    height: 15px;
-    background-color: #ffffff; /* Placeholder for icon */
-    margin-left: 10px;
-    border-radius: 50%;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
-}
-/* Adjust the opening and closing animations */
-.book-container.opened .book-cover-closed {
-    transform: rotateY(-180deg);
-}
-
-.book-container.opened .book-left {
-    transform: rotateY(0deg); /* Left cover rotates to the left */
-    transform: scaleX(85%);
-    font-family: Monaco;
-    font-size: small;
-}
-
-.book-container.opened .book-right {
-    transform: rotateY(0deg); /* Right cover rotates to the right */
-    transform: translateX(35%);
-    transform: scaleX(105%);
-    background-image: url("/Users/kofisampong/PycharmProjects/flaskProject/static/raspic.jpeg");
-
-}
-
-.book-pages {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    transform-style: preserve-3d;
-    transition: transform 1s ease;
-}
-.page-content {
-    padding: 20px;
-    text-align: center;
-}
-
-.page-content h2 {
-    margin-bottom: 20px;
-    font-size: 2em;
-}
-
-.page-content p {
-    font-size: 1.2em;
-    line-height: 1.6;
-}
-
-#landingPageContent {
-    display: block;
-}
-
-/* Window Styles */
+/* Windows (modal) — white text */
 .window {
-    display: none;
-    position: absolute;
-    background-color: #1a1a1a;
-    border: 2px solid #ffffff;
-    width: 80%;
-    height: 80%;
-    top: 50%;
-    left: 50%;
-    border-radius: 8px;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    overflow-y: auto;
+  display: none; position: fixed;
+  background: #000; color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.2);
+  width: min(860px, 92vw); height: min(82vh, 82vh);
+  inset: 50% auto auto 50%; transform: translate(-50%, -50%);
+  border-radius: 0; z-index: 50; overflow: hidden; box-shadow: none;
 }
-
 .title-bar {
-    background-color: #000000;
-    color: #ffffff;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: #000; color: #ffffff;
+  padding: 8px 12px; display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
-
-.title-bar span {
-    font-weight: bold;
-}
-
-.close-btn {
-    background-color: #ff0000;
-    border: none;
-    color: #ffffff;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 1em;
-}
-
-.close-btn:hover {
-    background-color: #cc0000;
-}
+.title-bar span { font-weight: 700; letter-spacing: 0.2px; }
+.close-btn { background: #ff4d4d; border: none; color: #fff; padding: 6px 10px; cursor: pointer; font-size: 12px; }
 
 .window-content {
-    padding: 20px;
+  padding: 16px 18px 24px;
+  height: calc(100% - 42px);
+  overflow: auto;
+  font-family: ui-monospace, Menlo, Monaco, Consolas, "Courier New", monospace;
+  color: #ffffff;
+  background: #000;
 }
 
-/* Dropdown Styles */
-.dropdown {
-    margin-bottom: 15px;
-}
-
+/* Dropdowns — white text */
+.dropdown { margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.2); background: #000; }
 .dropdown-btn {
-    background-color: #2b2b2b;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-    padding: 10px;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    font-size: 1em;
+  background: #000; color: #ffffff; border: none;
+  padding: 12px 14px; width: 100%; text-align: left; cursor: pointer; font-size: 14px; font-weight: 700;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
 }
-
 .dropdown-content {
-    display: none;
-    background-color: #3b3b3b;
-    padding: 10px;
-    margin-top: 5px;
-    border-left: 4px solid #ffffff;
+  display: none; background: #000; color: #d7d7d7;
+  padding: 12px 14px; border-left: 3px solid #b6ff9b;
+}
+.dropdown.open .dropdown-content { display: block; }
+
+/* Project cards */
+.proj-card {
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 12px 14px;
+  margin: 12px 0;
+  background: #000;
+}
+.proj-head h3 { margin: 0 0 6px; font-size: 18px; }
+.proj-meta { font-size: 12px; color: #bdbdbd; margin-bottom: 6px; }
+.one-liner { margin: 6px 0 10px; color: #ffffff; }
+.highlights { margin: 0 0 8px 18px; }
+.highlights li { margin-bottom: 6px; }
+.proj-foot { font-size: 12px; color: #cfcfcf; display: grid; gap: 4px; }
+.proj-foot .label { color: #ffffff; font-weight: 700; }
+.tags { color: #bdbdbd; }
+.links a { color: #8be9fd; text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+.updated { color: #9a9a9a; }
+
+/* Generic bullet list tweak */
+ul.bullet { margin: 0 0 8px 18px; }
+ul.bullet li { margin-bottom: 6px; }
+
+/* Backdrop when a window is open */
+body::after {
+  content: ""; position: fixed; inset: 0; background: transparent; z-index: 40; pointer-events: none; transition: background 220ms ease;
+}
+body.has-modal::after { background: rgba(0,0,0,0.45); pointer-events: auto; }
+
+/* ANSI color utilities */
+.ansi-red { color:#ff5555 !important; }
+.ansi-green { color:#50fa7b !important; }
+.ansi-yellow { color:#f1fa8c !important; }
+.ansi-blue { color:#8be9fd !important; }
+.ansi-magenta { color:#ff79c6 !important; }
+.ansi-cyan { color:#8be9fd !important; }
+.ansi-white { color:#ffffff !important; }
+.ansi-dim { opacity: 0.85; }
+.ansi-bold { font-weight: 800; text-shadow: 0 0 6px rgba(255,255,255,0.2); }
+.ansi-invert { background: #ffffff; color:#000; padding: 0 3px; }
+
+/* Papers / Publications layout */
+.papers-layout { display: grid; grid-template-columns: 240px 1fr; gap: 12px; height: 100%; }
+.papers-sidebar { border-right: 1px solid rgba(255,255,255,0.2); padding-right: 8px; overflow: auto; display: flex; flex-direction: column; gap: 6px; }
+.paper-link { color: #ffffff; text-decoration: none; font-weight: 700; padding: 6px 8px; border: 1px solid transparent; }
+.paper-link:hover, .paper-link:focus { outline: none; border-color: rgba(255,255,255,0.35); }
+.paper-link.active { background: #001b00; border-color: rgba(255,255,255,0.35); color: #b6ff9b; }
+
+.papers-viewer { display: flex; flex-direction: column; min-height: 0; }
+.papers-toolbar { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; border-bottom: 1px solid rgba(255,255,255,0.2); }
+.btn-link { color: #ffffff; text-decoration: none; font-weight: 700; margin-left: 10px; }
+.btn-link:hover { text-decoration: underline; }
+#pdfFrame { flex: 1 1 auto; width: 100%; height: 100%; border: none; background: #000; }
+
+/* Focus styles */
+:focus-visible { outline: 2px solid #26c6da; outline-offset: 2px; }
+
+/* Mobile */
+@media (max-width: 900px) {
+  body { overflow: auto; }
+  .book-container { width: 95vw; height: auto; }
+  .book-pages, .book-left, .book-right { position: static; width: 100%; height: auto; }
+  .status-bar { position: sticky; bottom: 0; }
+  .papers-layout { grid-template-columns: 1fr; }
+  .papers-sidebar { order: 2; border-right: none; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 8px; }
+  .papers-viewer { order: 1; }
 }
 
-.dropdown-btn:focus + .dropdown-content,
-.dropdown-content:hover {
-    display: block;
+/* === Color accents for Projects & Work entries === */
+
+/* Headings: cyan pop; meta lines: role = amber, dates = dim */
+.proj-card .proj-head h3 { color: #8be9fd; }                /* cyan */
+.proj-card .proj-meta .role { color: #f1fa8c; }             /* amber */
+.proj-card .proj-meta .dates { color: #9aa0a6; }            /* dim grey */
+
+/* One-liner: slightly brighter for scannability */
+.proj-card .one-liner { color: #e9f5ff; }                   /* near-white cool */
+
+/* Highlights list: cyan chevrons + white body text */
+.proj-card .highlights { list-style: none; padding-left: 0; margin-left: 0; }
+.proj-card .highlights li {
+  position: relative; padding-left: 18px; color: #ffffff;
 }
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 20px; /* Adjust the gap between icons */
-}
-.desktop-icon-container{
-    width:100px;
-    text-align: center;
-}
-/* General styling for desktop icons */
-.desktop-icon {
-    width: 80px; /* Width of the icon */
-    height: 100px; /* Height of the icon */
-    display: block;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-align: center;
-    color: #ffffff; /* Text color for the icon */
-    font-family: 'Segoe UI', Tahoma, Geneva, sans-serif; /* Font for desktop icons */
-    font-size: 14px;
-    user-select: none; /* Prevent text selection */
-    transition: transform 0.2s ease-in-out;
-    position: relative; /* For any additional positioning */
+.proj-card .highlights li::before {
+  content: "▸"; position: absolute; left: 0; top: 0.1em; color: #8be9fd;   /* cyan marker */
 }
 
-/* Folder icon image */
-.folder-icon {
-    width: 50px; /* Icon size */
-    height: 50px;
-    margin: 0 auto;
-    display: block;/* Space between the icon and the text */
-}
+/* Foot rows: labels = cyan, tags = green, updated = dim */
+.proj-card .proj-foot .label { color: #8be9fd; font-weight: 700; }         /* cyan */
+.proj-card .tags { color: #50fa7b; }                                       /* green */
+.proj-card .updated { color: #9aa0a6; }                                    /* dim grey */
 
-/* Hover effect to simulate OS icon behavior */
-.desktop-icon:hover {
-    transform: scale(1.1); /* Slightly enlarge on hover */
-}
+/* Links inside cards stay cyan and underline on hover */
+.proj-card .links a { color: #8be9fd; }
+.proj-card .links a:hover { text-decoration: underline; }
 
-/* Optional: Active/Click effect */
-.desktop-icon:active {
-    transform: scale(0.95); /* Slightly shrink on click */
-}
+/* Work window uses same card schema, so this hits both Projects + Work */
+#workWindow .proj-card .role { color: #f1fa8c; }                           /* amber roles */
+#workWindow .proj-card .dates { color: #9aa0a6; }                          /* dim dates */
 
-/* Text below the icon */
-.desktop-icon span {
-    display: block;
-    font-size: 12px;
-    color: #ffffff;
-    margin-top: 5px;
-}
-/* Terminal container to simulate a terminal window */
-.terminal-container {
-    width: 100%; /* Adjust width */
-    height: 100%;
-    background-color: #000000; /* Black background for terminal */
-    color: #f1f1f1; /* Classic green terminal text */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for terminal */
-    border: 3px solid #FFFFFF
-
-; /* Green border for terminal window */
-    border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    overflow: hidden;
-}
-
-/* Terminal screen */
-.terminal-screen {
-    width: 100%;
-    height: 100%;
-    white-space: pre-wrap; /* Preserve white spaces for terminal look */
-    font-size: 1.2em;
-    line-height: 1.5;
-}
-
-/* Typing cursor effect */
-.terminal-output::after {
-    content: '|'; /* Terminal cursor */
-    animation: blink 0.8s infinite; /* Blinking cursor */
-}
-
-@keyframes blink {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-}
-
-
+/* Optional: emphasize tool/stack names within body copy */
+.window-content em { color: #8be9fd; font-style: normal; }                 /* cyan italics off */
