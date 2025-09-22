@@ -93,7 +93,7 @@ body::before {
 .status-bar-time, .status-bar-username { color: #ffffff; }
 .status-bar-icons i { color: #ffffff; }
 
-/* Windows (modal) — white text */
+/* Windows (modal) — white text  */
 .window {
   display: none; position: fixed;
   background: #000; color: #ffffff;
