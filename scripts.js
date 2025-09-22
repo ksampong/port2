@@ -155,4 +155,3 @@ document.querySelectorAll('.desktop-icon-container').forEach(div => {
   const active = document.querySelector('.paper-link.active') || links[0];
   if (active) select(active);
 })();
-
