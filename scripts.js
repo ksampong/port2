@@ -75,10 +75,10 @@ const terminalText = `
 Booting up system...
 Checking memory... {green}[OK]{/}
 Checking disk... {green}[OK]{/}
-Loading Experiences... {yellow}[WARN]{/}
+Loading journal entries... {green}[OK]{/}
 System ready.
 
-{bold}My name is Kofi.{/} This is my professional journal: recent work, projects, and things I'm learning.
+{bold}My name is Kofi.{/} This is my engineering journal: work logs, builds, papers, and active research.
 `;
 
 function colorizeTagged(text) {
@@ -140,7 +140,7 @@ document.querySelectorAll('.desktop-icon-container').forEach(div => {
     const src = link.getAttribute('data-src');
     const href = link.getAttribute('href');
     frame.src = src || href;
-    titleEl.textContent = link.textContent.trim();
+    titleEl.textContent = link.getAttribute('data-title') || link.textContent.trim();
     openExt.href = href;
     dl.href = href;
   }

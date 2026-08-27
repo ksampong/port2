@@ -24,13 +24,17 @@
         <div class="page-content">
           <div id="landingPageContent">
             <div class="container">
+              <div class="desktop-icon-container" tabindex="0" role="button" onclick="openWindow('workWindow')" aria-label="Open Work Experience">
+                <img src="foldericon.png" alt="Work Folder Icon" class="folder-icon"/>
+                <span>Work</span>
+              </div>
               <div class="desktop-icon-container" tabindex="0" role="button" onclick="openWindow('projectsWindow')" aria-label="Open Projects">
                 <img src="foldericon.png" alt="Projects Folder Icon" class="folder-icon"/>
                 <span>Projects</span>
               </div>
-              <div class="desktop-icon-container" tabindex="0" role="button" onclick="openWindow('workWindow')" aria-label="Open Work Experience">
-                <img src="foldericon.png" alt="Work Folder Icon" class="folder-icon"/>
-                <span>Work</span>
+              <div class="desktop-icon-container" tabindex="0" role="button" onclick="openWindow('papersWindow')" aria-label="Open Papers and Publications">
+                <img src="foldericon.png" alt="Papers Folder Icon" class="folder-icon"/>
+                <span>Papers / Publications</span>
               </div>
               <div class="desktop-icon-container" tabindex="0" role="button" onclick="openWindow('interestsWindow')" aria-label="Open Interests">
                 <img src="foldericon.png" alt="Interests Folder Icon" class="folder-icon"/>
@@ -39,10 +43,6 @@
               <div class="desktop-icon-container" tabindex="0" role="button" onclick="openWindow('BooksWindow')" aria-label="Open Books">
                 <img src="foldericon.png" alt="Books Folder Icon" class="folder-icon"/>
                 <span>Books</span>
-              </div>
-              <div class="desktop-icon-container" tabindex="0" role="button" onclick="openWindow('papersWindow')" aria-label="Open Papers">
-                <img src="foldericon.png" alt="Papers Folder Icon" class="folder-icon"/>
-                <span>Papers</span>
               </div>
               <div class="desktop-icon-container" tabindex="0" role="button" onclick="openWindow('aboutWindow')" aria-label="Open About">
                 <img src="foldericon.png" alt="About Folder Icon" class="folder-icon"/>
@@ -78,63 +78,62 @@
       <div class="dropdown">
         <button class="dropdown-btn">Featured</button>
         <div class="dropdown-content">
-          <!-- ISURA Research Assistant -->
           <article class="proj-card">
             <header class="proj-head">
-              <h3>ISURA Research Assistant: LLMs for Code Understanding</h3>
-              <div class="proj-meta"><span class="role">Undergraduate Research Assistant</span> · <span class="dates">May 2025 – Present</span></div>
+              <h3>Embodied AI Robotic Lamp / Robotic Arm</h3>
+              <div class="proj-meta"><span class="role">Embodied AI + Robotics</span> · <span class="dates">2026</span></div>
             </header>
-            <p class="one-liner">Built end-to-end pipelines to evaluate and probe model understanding of C/C++ code (summaries, embeddings, similarity).</p>
+            <p class="one-liner">Built an integrated embodied-AI prototype combining servo control, on-device perception, memory events, and conversational interaction.</p>
             <ul class="highlights">
-              <li>Implemented Python/PyTorch (Hugging Face) pipelines for embeddings, similarity, and summarization with reproducible runs.</li>
-              <li>Ran systematic GPU experiments; automated metrics <span class="ansi-cyan">(BLEU, BERTScore, cosine)</span>; UMAP + TensorBoard visualizations.</li>
-              <li>Explored mechanistic/concept-based signals; created Type II/III clone variants for evaluation; wrote shareable plots/memos.</li>
+              <li><span class="ansi-cyan">[CONTROL]</span> 6DOF MG996R arm + Raspberry Pi 4B + Waveshare PCA9685 + ServoKit; stable empirically selected poses, smoothed movement, and a camera-stable wrist strategy using primarily joints 0–3.</li>
+              <li><span class="ansi-cyan">[PERCEPTION]</span> Picamera2 stream (640×480 BGR888) served to independent clients; MediaPipe FaceMesh + YOLOv8n with attention states <span class="ansi-yellow">LOOKING / NOT_LOOKING / NO_FACE</span> and distance-sensitive detection behavior in testing.</li>
+              <li><span class="ansi-cyan">[MEMORY]</span> Timestamped JSONL event streams for attention, scene/object events, and fused state used as lightweight IPC. Historical object-location recall is <span class="ansi-yellow">experimental/incomplete</span>.</li>
+              <li><span class="ansi-cyan">[BEHAVIOUR]</span> IDLE → person detected → attention check; disengagement triggers a tuck-and-sweep sequence until threshold is met, then returns home.</li>
+              <li><span class="ansi-cyan">[CONVERSATION]</span> USB mic + Vosk ASR + laptop-hosted Ollama LLM + TTS; hard-coded timed responses also used during system tests due to latency/hallucination limits on small local models.</li>
+              <li><span class="ansi-cyan">[EVALUATION]</span> 8/8 engagement blocks reached required state; 7/8 with no incorrect transitions (2 total incorrect transitions). Mean person→greeting ≈ 1.45s; median disengagement→arm motion ≈ 45ms; LLM latency ≈ 19.7s; end-to-end conversation ≈ 24.1s.</li>
             </ul>
             <div class="proj-foot">
-              <div class="stack"><span class="label">Stack:</span> Python, PyTorch, HF Transformers, scikit-learn, UMAP, TensorBoard, Matplotlib</div>
-              <div class="tags">#LLM #CodeUnderstanding #Embeddings #Evaluation #Reproducibility</div>
-              <div class="links"><a href="#" target="_blank">Code</a> · <a href="#" target="_blank">Notes</a></div>
-              <div class="updated">Last updated: Sep 2025</div>
+              <div class="stack"><span class="label">Stack:</span> Raspberry Pi 4B, PCA9685, Adafruit ServoKit, Picamera2, MediaPipe, YOLOv8n, Python, JSONL, Vosk, Ollama</div>
+              <div class="tags">#EmbodiedAI #Robotics #ComputerVision #HRI #SystemsIntegration</div>
+              <div class="updated">Last updated: Summer 2026</div>
             </div>
           </article>
 
-          <!-- 6502 Emulator -->
+          <article class="proj-card">
+            <header class="proj-head">
+              <h3>LLM Code Understanding Research</h3>
+              <div class="proj-meta"><span class="role">Undergraduate Research Assistant</span> · <span class="dates">2025 – 2026</span></div>
+            </header>
+            <p class="one-liner">Developed reproducible GPU pipelines to test whether source-code embedding spaces capture program semantics for educational downstream tasks.</p>
+            <ul class="highlights">
+              <li>Built code summarization, clone-similarity, and correctness-oriented evaluation pipelines using <span class="ansi-cyan">CodeBERT</span>, <span class="ansi-cyan">CodeT5</span>, and DeepSeek-related code models.</li>
+              <li>Used BLEU, ROUGE, BERTScore, and cosine similarity; analyzed embedding behavior with PCA / t-SNE / UMAP across controlled code variants and clone types.</li>
+              <li>Implemented libclang-based AST/CFG/DFG generation and tokenizer/embedding diagnostics to probe structure vs semantic encoding.</li>
+              <li>Ran reproducible experiments on GPU infrastructure (including Compute Canada resources) and documented protocol, configs, and run logs.</li>
+              <li><span class="ansi-green">[PUBLICATION]</span> Resulted in <em>Evaluating Source Code Embeddings from LLMs for Educational Downstream Tasks</em> (IEEE UEMCON 2025, IBM Louis V. Gerstner Center).</li>
+            </ul>
+            <div class="proj-foot">
+              <div class="stack"><span class="label">Stack:</span> Python, PyTorch, Hugging Face, libclang, scikit-learn, UMAP/t-SNE/PCA, TensorBoard</div>
+              <div class="tags">#LLM #CodeUnderstanding #Embeddings #ProgramAnalysis #Research</div>
+              <div class="updated">Last updated: 2026</div>
+            </div>
+          </article>
+
           <article class="proj-card">
             <header class="proj-head">
               <h3>6502 Emulator (C++)</h3>
-              <div class="proj-meta"><span class="role">Personal Project</span> · <span class="dates">Dec 2024 – Feb 2025; tests ongoing</span></div>
+              <div class="proj-meta"><span class="role">Low-Level Systems Project</span> · <span class="dates">2024 – ongoing refinement</span></div>
             </header>
-            <p class="one-liner">Wrote a working 6502 CPU emulator to internalize addressing modes, instruction semantics, and CPU structure.</p>
+            <p class="one-liner">Implemented a full 6502 emulator to understand ISA behavior and CPU execution structure from first principles.</p>
             <ul class="highlights">
-              <li>Implemented full instruction set + addressing modes; validated with hand-written tests and reference traces.</li>
-              <li>Refactored opcode dispatch; clarified status-flag logic; mapped edge cases (e.g., page wrapping).</li>
-              <li>Planned unit tests and an instruction visualizer; documented fetch–decode–execute insights.</li>
+              <li>Implemented registers, flags, addressing modes, full instruction set flow, and fetch-decode-execute cycle over a 64 KB memory model.</li>
+              <li>Handled key memory regions including zero page and stack while debugging instruction/flag edge cases.</li>
+              <li>Current status: cycle-accuracy and richer execution visualization are planned next steps, not yet complete.</li>
             </ul>
             <div class="proj-foot">
               <div class="stack"><span class="label">Stack:</span> C++, STL</div>
-              <div class="tags">#Systems #Emulation #ComputerArchitecture #C++</div>
-              <div class="links"><a href="#" target="_blank">Repo</a> · <a href="#" target="_blank">Dev Notes</a></div>
-              <div class="updated">Last updated: Mar 2025</div>
-            </div>
-          </article>
-
-          <!-- 4-bit ALU -->
-          <article class="proj-card">
-            <header class="proj-head">
-              <h3>Hierarchical 4-bit ALU (VHDL) on Nexys</h3>
-              <div class="proj-meta"><span class="role">Course/Personal</span> · <span class="dates">2024</span></div>
-            </header>
-            <p class="one-liner">Designed a modular 4-bit ALU (logic + arithmetic + 7-segment decode) and validated on FPGA.</p>
-            <ul class="highlights">
-              <li>Composed half/full adder, logic & arithmetic units into a clean 1-bit → 4-bit hierarchy with testbenches.</li>
-              <li>Implemented 7-segment decoder, debouncing, and constraints; documented timing considerations.</li>
-              <li>Demoed operations on hardware; wrote a short post-mortem.</li>
-            </ul>
-            <div class="proj-foot">
-              <div class="stack"><span class="label">Stack:</span> VHDL, Xilinx Vivado, Nexys</div>
-              <div class="tags">#FPGA #VHDL #DigitalDesign #ALU</div>
-              <div class="links"><a href="#" target="_blank">Repo</a> · <a href="#" target="_blank">Lab Notes</a></div>
-              <div class="updated">Last updated: Nov 2024</div>
+              <div class="tags">#Systems #Emulation #ComputerArchitecture #CPlusPlus</div>
+              <div class="updated">Last updated: 2026</div>
             </div>
           </article>
         </div>
@@ -143,11 +142,10 @@
       <div class="dropdown">
         <button class="dropdown-btn">More Projects</button>
         <div class="dropdown-content">
-          <!-- Matrix Math Processor -->
           <article class="proj-card">
             <header class="proj-head">
               <h3>Matrix Math Processor (VHDL) — MVP</h3>
-              <div class="proj-meta"><span class="role">Personal</span> · <span class="dates">Feb 2025 – Present</span></div>
+              <div class="proj-meta"><span class="role">Digital Systems Project</span> · <span class="dates">2025 – ongoing</span></div>
             </header>
             <p class="one-liner">Base VHDL module + memory layout for up to 10×10 matrices (complex support); add/sub/mul/transpose on Nexys.</p>
             <ul class="highlights">
@@ -158,12 +156,28 @@
             <div class="proj-foot">
               <div class="stack"><span class="label">Stack:</span> VHDL, BRAM, Vivado, Nexys A7</div>
               <div class="tags">#FPGA #VHDL #LinearAlgebra #ComputerArchitecture</div>
-              <div class="links"><a href="#" target="_blank">Design Doc</a> · <a href="#" target="_blank">Repo</a></div>
-              <div class="updated">Last updated: Jun 2025</div>
+              <div class="updated">Last updated: 2026</div>
             </div>
           </article>
 
-          <!-- Qiskit Global Summer School -->
+          <article class="proj-card">
+            <header class="proj-head">
+              <h3>Hierarchical 4-bit ALU (VHDL) on Nexys</h3>
+              <div class="proj-meta"><span class="role">Course + Personal Build</span> · <span class="dates">2024</span></div>
+            </header>
+            <p class="one-liner">Designed a modular 4-bit ALU with arithmetic/logic composition and FPGA validation.</p>
+            <ul class="highlights">
+              <li>Composed half/full adders into a 1-bit to 4-bit hierarchy with logic/arithmetic units and testbenches.</li>
+              <li>Integrated 7-segment decode, debouncing, and constraints for board deployment.</li>
+              <li>Documented timing and verification observations from hardware tests.</li>
+            </ul>
+            <div class="proj-foot">
+              <div class="stack"><span class="label">Stack:</span> VHDL, Vivado, Nexys</div>
+              <div class="tags">#FPGA #VHDL #DigitalLogic</div>
+              <div class="updated">Last updated: 2026</div>
+            </div>
+          </article>
+
           <article class="proj-card">
             <header class="proj-head">
               <h3>Qiskit Global Summer School — Labs & Notes (2024, 2025)</h3>
@@ -178,16 +192,14 @@
             <div class="proj-foot">
               <div class="stack"><span class="label">Stack:</span> Python, Qiskit, Matplotlib</div>
               <div class="tags">#QuantumComputing #Qiskit #ErrorCorrection #Visualization</div>
-              <div class="links"><a href="#" target="_blank">Notes</a> · <a href="#" target="_blank">Notebooks</a></div>
-              <div class="updated">Last updated: Aug 2025</div>
+              <div class="updated">Last updated: 2026</div>
             </div>
           </article>
 
-          <!-- UofG Racing -->
           <article class="proj-card">
             <header class="proj-head">
               <h3>UofG Racing — Embedded Systems</h3>
-              <div class="proj-meta"><span class="role">Team Member</span> · <span class="dates">Sept 2024 – Present</span></div>
+              <div class="proj-meta"><span class="role">Team Member</span> · <span class="dates">2024 – 2026</span></div>
             </header>
             <p class="one-liner">Hands-on PCB & embedded experience contributing to team hardware/firmware.</p>
             <ul class="highlights">
@@ -198,28 +210,18 @@
             <div class="proj-foot">
               <div class="stack"><span class="label">Stack:</span> PCB tools (TBD), C/C++ (firmware)</div>
               <div class="tags">#Embedded #PCB #Firmware #TeamWork</div>
-              <div class="links"><a href="#" target="_blank">Team Notes</a></div>
-              <div class="updated">Last updated: Sep 2025</div>
+              <div class="updated">Last updated: 2026</div>
             </div>
           </article>
 
-          <!-- Tokenizers & Embeddings Study -->
           <article class="proj-card">
             <header class="proj-head">
-              <h3>Tokenizers & Embeddings Study (ISURA Project)</h3>
-              <div class="proj-meta"><span class="role">Research Assistant</span> · <span class="dates">Jul 2025 – Present</span></div>
+              <h3>Research Reproduction Study — In Progress</h3>
+              <div class="proj-meta"><span class="role">Planned Research Build</span> · <span class="dates">Status: scoped, not executed</span></div>
             </header>
-            <p class="one-liner">Evaluating embedding behavior across models using functionally-equivalent C/C++ variants.</p>
-            <ul class="highlights">
-              <li>Curated controlled code variants; measured clustering consistency (CodeT5, CodeBERT, DeepSeek-Coder families).</li>
-              <li>Analyzed tokenizer effects (SentencePiece/T5/Code-aware) on similarity; UMAP/TensorBoard probing.</li>
-              <li>Integrated into lab pipelines; documented protocols for reproducibility & ablations.</li>
-            </ul>
+            <p class="one-liner">Reserved slot for a future Park study reproduction once paper selection, implementation details, and comparative results are complete.</p>
             <div class="proj-foot">
-              <div class="stack"><span class="label">Stack:</span> Python, HF, scikit-learn, UMAP, TensorBoard</div>
-              <div class="tags">#Embeddings #NLP4Code #Tokenization #Evaluation</div>
-              <div class="links"><a href="#" target="_blank">Repo</a> · <a href="#" target="_blank">Results</a></div>
-              <div class="updated">Last updated: Sep 2025</div>
+              <div class="tags">#InProgress #ReproductionStudy</div>
             </div>
           </article>
         </div>
@@ -236,51 +238,44 @@
     <div class="window-content">
       <article class="proj-card">
         <header class="proj-head">
-          <h3>Undergraduate Research Assistant — ISURA Program, University of Guelph</h3>
-          <div class="proj-meta"><span class="dates">May 2025 – Present</span></div>
+          <h3>Algebra Capital — Junior Operations Analyst (Data Engineering-Oriented Co-op)</h3>
+          <div class="proj-meta"><span class="role">Summer 2026</span> · <span class="dates">Operations + Data Migration Engineering</span></div>
         </header>
-        <p class="one-liner">Build and maintain pipelines to evaluate LLMs for C/C++ code understanding; run ablations; produce reproducible results and memos.</p>
+        <p class="one-liner">Consolidated fragmented KYC/client records into a migration-ready operational data structure without forcing unreliable legacy identifiers.</p>
         <ul class="highlights">
-          <li>End-to-end Python/PyTorch (Hugging Face) pipelines for embeddings, similarity, summarization; automated metrics (BLEU, BERTScore, cosine).</li>
-          <li>Tokenizer/embedding studies (CodeT5, CodeBERT, DeepSeek-Coder); UMAP/TensorBoard visualizations; probing ideas.</li>
-          <li>Organized configs, seeds, and run logs; plotted results and documented takeaways.</li>
-        </ul>
-        <div class="tags">#LLM #CodeUnderstanding #Evaluation #Research</div>
-      </article>
-
-      <article class="proj-card">
-        <header class="proj-head">
-          <h3>NLP-Focused Internship (University Term) — Stanbic Bank (Engineering)</h3>
-          <div class="proj-meta"><span class="dates">Duration: 9 months (April-Dec 2025)</span></div>
-        </header>
-        <p class="one-liner">Contributed to a chatbot with retrieval-augmented generation (RAG) using LLM embeddings.</p>
-        <ul class="highlights">
-          <li>Built a document indexing pipeline over org docs; improved grounded, context-aware answers for support workflows.</li>
-          <li>Worked in a low-code environment to integrate and deploy; fine-tuned embeddings; evaluated semantic equivalence.</li>
-          <li>Documented methods/results in a research-style report with supporting notebooks.</li>
+          <li><span class="ansi-cyan">[PROBLEM]</span> Source records were split across Jotform exports, older Google Forms, and operational spreadsheets with inconsistent fields and conflicting identifiers.</li>
+          <li><span class="ansi-cyan">[BUILD]</span> Built Python/Pandas profiling and cleaning workflows for missing-field detection, duplicate detection (phone, email, Ghana Card, names, account IDs), exception tracking, and migration-readiness reporting.</li>
+          <li><span class="ansi-cyan">[ENGINEERING DECISION]</span> Legacy/duplicate account IDs were unreliable during migration mapping, so the identifier strategy and relational structure were revised instead of importing inconsistent IDs into the new system.</li>
+          <li><span class="ansi-cyan">[DATA MODEL]</span> Prototyped a normalized SQLite design centered on Account Information, Personal Information, Residential Information, and Employment Information with foreign-key relationships.</li>
+          <li><span class="ansi-cyan">[AUTOMATION]</span> Used Excel/Jotform staging workflows and implemented operations automation (including REST API integrations such as Trello automation from structured Excel inputs).</li>
         </ul>
         <div class="proj-foot">
-          <div class="stack"><span class="label">Tools & Skills:</span> Python, HF Transformers, semantic embeddings, vector search, retrieval-based NLP, low-code, Jupyter</div>
-          <div class="tags">#LLMs #RAG #Embeddings #VectorSearch</div>
-          <div class="updated">Last updated: Sep 2025</div>
+          <div class="stack"><span class="label">[STACK]</span> Python :: Pandas :: SQL :: SQLite :: Excel :: REST APIs :: Jotform</div>
+          <div class="tags">#DataEngineering #DataOps #KYC #Migration #Automation</div>
+          <div class="updated">Last updated: Summer 2026</div>
         </div>
       </article>
 
       <article class="proj-card">
         <header class="proj-head">
-          <h3>Intern — Stanbic Bank (Engineering Department)</h3>
-          <div class="proj-meta"><span class="dates">Aug 2022 – Sep 2022 · Accra, Ghana</span></div>
+          <h3>Undergraduate Research Assistant — ISURA Program, University of Guelph</h3>
+          <div class="proj-meta"><span class="role">Research Engineering</span> · <span class="dates">May 2025 – Present</span></div>
         </header>
-        <p class="one-liner">Automation & early chatbot experiments to reduce repetitive tasks and improve turnaround.</p>
-        <ul class="highlights">
-          <li>Designed bots/scripts for internal process automation.</li>
-          <li>Built an early conversational chatbot to triage common inquiries.</li>
-          <li>Prototyped a predictive conversational model for next-step accuracy.</li>
-        </ul>
+        <p class="one-liner">Built reproducible LLM/code-understanding pipelines spanning embeddings, summarization, clone similarity, and structural analysis for publication-oriented research.</p>
         <div class="proj-foot">
-          <div class="stack"><span class="label">Tools:</span> Python scripting, basic NLP, spreadsheets/CSV, Git</div>
-          <div class="tags">#Automation #Chatbot #NLP</div>
-          <div class="updated">Last updated: Sep 2025</div>
+          <div class="stack"><span class="label">Focus:</span> Source-code embeddings, AST/CFG/DFG pipelines, GPU experiments, evaluation metrics</div>
+          <div class="tags">#LLM #CodeUnderstanding #Research #Publication</div>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <header class="proj-head">
+          <h3>Stanbic Bank — Engineering Internship</h3>
+          <div class="proj-meta"><span class="role">NLP/Automation Project Work</span> · <span class="dates">2025 (9-month term)</span></div>
+        </header>
+        <p class="one-liner">Contributed to retrieval-aware chatbot/document workflows and internal automation under engineering constraints.</p>
+        <div class="proj-foot">
+          <div class="tags">#NLP #RAG #Automation #Engineering</div>
         </div>
       </article>
     </div>
@@ -298,10 +293,11 @@
         <div class="dropdown-content">
           <ul class="bullet">
             <li>LLMs for Code Understanding (summarization, embeddings, probing).</li>
-            <li>Tokenizers & Embeddings behavior across code models.</li>
-            <li>FPGA / VHDL (ALU, matrix math processor).</li>
-            <li>Classical → Quantum computing foundations.</li>
-            <li>Emulation & low-level systems (6502).</li>
+            <li>Representation learning for source code (tokenizers, embedding spaces, semantic similarity).</li>
+            <li>Embodied AI + robotics (perception-action loops, behavior policies, HRI latency tradeoffs).</li>
+            <li>FPGA / VHDL systems (ALU and matrix-processor architecture).</li>
+            <li>Computer architecture and low-level systems (emulation, ISA behavior).</li>
+            <li>Classical-to-quantum computing pathways through applied labs.</li>
           </ul>
         </div>
       </div>
@@ -309,9 +305,9 @@
         <button class="dropdown-btn">Learning Queue (Next)</button>
         <div class="dropdown-content">
           <ul class="bullet">
-            <li>Nielsen & Chuang, <em>Quantum Computation and Quantum Information</em> (“Mike & Ike”).</li>
-            <li>Matrix processor: multiply/transpose pipelines + verification.</li>
-            <li>Unit tests + visualizer for 6502 emulator.</li>
+            <li>Park study reproduction project setup (paper selection + implementation plan pending finalized scope).</li>
+            <li>6502 emulator cycle-accuracy improvements and visualization tooling.</li>
+            <li>Matrix processor multiply/transpose pipelines with stronger verification coverage.</li>
           </ul>
         </div>
       </div>
@@ -328,9 +324,9 @@
       <div class="dropdown">
         <button class="dropdown-btn">Tools / Stacks I Enjoy</button>
         <div class="dropdown-content">
-          <p><strong>ML/Research:</strong> Python, PyTorch, Hugging Face, scikit-learn, UMAP, TensorBoard, Matplotlib</p>
-          <p><strong>Hardware:</strong> VHDL, Xilinx Vivado, Nexys boards</p>
-          <p><strong>Systems:</strong> C/C++, emulators & low-level debugging</p>
+          <p><strong>ML/Research:</strong> Python, PyTorch, Hugging Face, libclang pipelines, scikit-learn, UMAP/t-SNE/PCA, TensorBoard</p>
+          <p><strong>Data/Operations:</strong> Pandas profiling, relational modeling, SQLite prototyping, Excel/Jotform staging, REST automation</p>
+          <p><strong>Hardware/Systems:</strong> VHDL, Vivado, Raspberry Pi, servo-control stacks, C/C++ emulation and debugging</p>
         </div>
       </div>
     </div>
@@ -360,8 +356,8 @@
       <button class="close-btn" onclick="closeWindow('aboutWindow')" aria-label="Close About">X</button>
     </div>
     <div class="window-content">
-      <p>I’m originally from Ghana and driven by a passion for research and engineering. I’m currently focused on <span class="ansi-yellow">LLMs for code understanding</span>, <span class="ansi-cyan">embedded systems</span>, and strengthening my quantum foundations.</p>
-      <p>I like clear experiments, reproducible runs, and short memos that connect results to decisions.</p>
+      <p>I’m an undergraduate computer engineering student from Ghana building this site as a live engineering journal. Recent work spans <span class="ansi-cyan">data engineering operations</span>, <span class="ansi-yellow">LLM/code-understanding research</span>, and <span class="ansi-cyan">embodied AI robotics</span>.</p>
+      <p>I care about reproducible experiments, practical system integration, and writing clear notes that connect implementation choices to observed behavior.</p>
     </div>
   </div>
 
@@ -373,21 +369,19 @@
     </div>
     <div class="window-content papers-layout">
       <aside class="papers-sidebar" aria-label="Papers list">
-        <!-- Put your PDFs under /papers and update paths below -->
-        <a href="papers/proposal.pdf" class="paper-link active" data-src="Proposal draft.pdf#view=FitH">Research Proposal</a>
-        <a href="papers/uemcon2025.pdf" class="paper-link" data-src="UEMCO2025.pdf#view=FitH">Evaluating Source Code Embeddings from LLMs for Educational Downstream Tasks.
- (Accepted)</a>
-        <a href="papers/code-summarization.pdf" class="paper-link" data-src="Supplementary Essays — Background · Argument · Game Plan.pdf#view=FitH">Resesarch Proposal Supplementary essay</a>
+        <a href="UEMCO2025.pdf" class="paper-link active" data-src="UEMCO2025.pdf#view=FitH" data-title="Evaluating Source Code Embeddings from LLMs for Educational Downstream Tasks">Evaluating Source Code Embeddings from LLMs for Educational Downstream Tasks<br><span class="ansi-dim">N. A. Pais, Kofi Sampong, E. Sartor, R. Chaturvedi · IEEE UEMCON 2025</span></a>
+        <a href="Proposal draft.pdf" class="paper-link" data-src="Proposal draft.pdf#view=FitH" data-title="Research Proposal">Research Proposal</a>
+        <a href="Supplementary Essays — Background · Argument · Game Plan.pdf" class="paper-link" data-src="Supplementary Essays — Background · Argument · Game Plan.pdf#view=FitH" data-title="Research Proposal Supplementary Essay">Research Proposal Supplementary Essay</a>
       </aside>
       <section class="papers-viewer">
         <div class="papers-toolbar">
-          <span class="ansi-cyan" id="paperTitle">Research Proposal</span>
+          <span class="ansi-cyan" id="paperTitle">Evaluating Source Code Embeddings from LLMs for Educational Downstream Tasks</span>
           <div class="papers-actions">
-            <a id="openExternal" href="papers/proposal.pdf" target="_blank" rel="noopener" class="btn-link"><i class="fa-solid fa-up-right-from-square"></i> Open</a>
-            <a id="downloadFile" href="papers/proposal.pdf" download class="btn-link"><i class="fa-solid fa-download"></i> Download</a>
+            <a id="openExternal" href="UEMCO2025.pdf" target="_blank" rel="noopener" class="btn-link"><i class="fa-solid fa-up-right-from-square"></i> Open</a>
+            <a id="downloadFile" href="UEMCO2025.pdf" download class="btn-link"><i class="fa-solid fa-download"></i> Download</a>
           </div>
         </div>
-        <iframe id="pdfFrame" title="PDF viewer" src="papers/proposal.pdf#view=FitH" loading="lazy"></iframe>
+        <iframe id="pdfFrame" title="PDF viewer" src="UEMCO2025.pdf#view=FitH" loading="lazy"></iframe>
       </section>
     </div>
   </div>
