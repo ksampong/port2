@@ -241,13 +241,13 @@
           <h3>Algebra Capital — Junior Operations Analyst (Data Engineering-Oriented Co-op)</h3>
           <div class="proj-meta"><span class="role">Summer 2026</span> · <span class="dates">Operations + Data Migration Engineering</span></div>
         </header>
-        <p class="one-liner">Consolidated fragmented KYC/client records into a migration-ready operational data structure without forcing unreliable legacy identifiers.</p>
+        <p class="one-liner">Executed KYC/client-data consolidation and migration-readiness preparation across fragmented operational sources, with emphasis on data quality, identifier reliability, and schema consistency.</p>
         <ul class="highlights">
           <li><span class="ansi-cyan">[PROBLEM]</span> Source records were split across Jotform exports, older Google Forms, and operational spreadsheets with inconsistent fields and conflicting identifiers.</li>
-          <li><span class="ansi-cyan">[BUILD]</span> Built Python/Pandas profiling and cleaning workflows for missing-field detection, duplicate detection (phone, email, Ghana Card, names, account IDs), exception tracking, and migration-readiness reporting.</li>
-          <li><span class="ansi-cyan">[ENGINEERING DECISION]</span> Legacy/duplicate account IDs were unreliable during migration mapping, so the identifier strategy and relational structure were revised instead of importing inconsistent IDs into the new system.</li>
-          <li><span class="ansi-cyan">[DATA MODEL]</span> Prototyped a normalized SQLite design centered on Account Information, Personal Information, Residential Information, and Employment Information with foreign-key relationships.</li>
-          <li><span class="ansi-cyan">[AUTOMATION]</span> Used Excel/Jotform staging workflows and implemented operations automation (including REST API integrations such as Trello automation from structured Excel inputs).</li>
+          <li><span class="ansi-cyan">[BUILD]</span> Built Python/Pandas profiling and cleaning workflows for missing-field detection, duplicate detection across phone/email/Ghana Card/name/account identifiers, exception tracking, and migration-readiness analysis.</li>
+          <li><span class="ansi-cyan">[ENGINEERING DECISION]</span> When legacy account identifiers proved unreliable, I revised identifier and relational-database assumptions instead of forcing inconsistent IDs into the target structure.</li>
+          <li><span class="ansi-cyan">[DATA MODEL]</span> Implemented a normalized SQLite prototype around Account Information, Personal Information, Residential Information, and Employment Information tables, linked through foreign-key relationships.</li>
+          <li><span class="ansi-cyan">[AUTOMATION]</span> Used Excel/Jotform staging workflows and built REST/API-based operational automation where needed (including Trello automation from structured Excel inputs).</li>
         </ul>
         <div class="proj-foot">
           <div class="stack"><span class="label">[STACK]</span> Python :: Pandas :: SQL :: SQLite :: Excel :: REST APIs :: Jotform</div>
@@ -258,24 +258,80 @@
 
       <article class="proj-card">
         <header class="proj-head">
-          <h3>Undergraduate Research Assistant — ISURA Program, University of Guelph</h3>
-          <div class="proj-meta"><span class="role">Research Engineering</span> · <span class="dates">May 2025 – Present</span></div>
+          <h3>Undergraduate Research Assistant — University of Guelph, School of Computer Science</h3>
+          <div class="proj-meta"><span class="role">ISURA Research Program</span> · <span class="dates">May 2025 – December 2025</span></div>
         </header>
-        <p class="one-liner">Built reproducible LLM/code-understanding pipelines spanning embeddings, summarization, clone similarity, and structural analysis for publication-oriented research.</p>
+        <p class="one-liner">I conducted research on how large language models represent and understand source code, with emphasis on whether learned embeddings captured semantics for summarization, clone similarity, and correctness-related analysis. I built the experimental infrastructure needed to inspect and evaluate model representations rather than treating outputs as black-box results.</p>
+        <p><span class="ansi-cyan ansi-bold">[TECHNICAL WORK]</span></p>
+        <p>I built and operated reproducible embedding/summarization pipelines, evaluation workflows, and representation-analysis tooling over large C/C++ datasets, then connected those outputs to structural-code analysis and publication-grade reporting.</p>
+        <p><span class="ansi-cyan ansi-bold">[CONTRIBUTIONS]</span></p>
+        <ul class="highlights">
+          <li>I built Python and PyTorch pipelines for generating source-code embeddings and summaries using CodeBERT, CodeT5, and DeepSeek-Coder-family models.</li>
+          <li>I developed reproducible experiment workflows for large C/C++ collections: batching, configuration management, run logging, GPU execution, and structured output storage.</li>
+          <li>I evaluated model behavior using cosine similarity, BLEU, ROUGE, BERTScore, and dimensionality-reduction workflows with PCA, t-SNE, and UMAP.</li>
+          <li>I developed controlled code-variation datasets to test embedding stability across functionally equivalent programs and clone-style transformations that separate syntax from semantics.</li>
+          <li>I investigated tokenizer behavior and how tokenization strategies influenced downstream embedding representations.</li>
+          <li>I built visualization workflows using TensorBoard, Matplotlib, and UMAP to inspect clustering, similarity, and latent representation behavior.</li>
+        </ul>
+        <p><span class="ansi-cyan ansi-bold">[STRUCTURAL CODE ANALYSIS]</span></p>
+        <ul class="highlights">
+          <li>I built AST, CFG, and DFG extraction pipelines for C/C++ with libclang.</li>
+          <li>I designed JSON graph representations containing nodes, edges, metadata, and source relationships for downstream multimodal experiments.</li>
+          <li>I developed AST-cleaning stages to remove compiler- and macro-related noise.</li>
+          <li>I built dataset inspection and merge workflows that combined source code with multiple graph representations.</li>
+          <li>I added run statistics, quality checks, suspicious-output flags, and readiness logic so large graph-generation jobs could be inspected rather than assumed to succeed.</li>
+          <li>The work supported experiments on whether explicit program structure could improve understanding beyond token sequences alone.</li>
+        </ul>
+        <p><span class="ansi-cyan ansi-bold">[RESEARCH OUTCOME]</span></p>
+        <p>I co-authored <span class="ansi-green">“Evaluating Source Code Embeddings from LLMs for Educational Downstream Tasks.”</span> I presented the work at <span class="ansi-yellow">IEEE UEMCON 2025</span> at the IBM Louis V. Gerstner Center, and the paper is available in the <a class="ansi-cyan" href="UEMCO2025.pdf" target="_blank" rel="noopener">Papers / Publications</a> folder.</p>
+        <p>The experiments indicated strong capture of syntactic structure in embedding spaces, with weaker separation for correctness and deeper semantic properties. This finding helped motivate later emphasis on structural and symbolic source-code representations.</p>
         <div class="proj-foot">
-          <div class="stack"><span class="label">Focus:</span> Source-code embeddings, AST/CFG/DFG pipelines, GPU experiments, evaluation metrics</div>
+          <div class="stack"><span class="label">[STACK]</span> Python :: PyTorch :: Hugging Face Transformers :: CodeBERT :: CodeT5 :: DeepSeek-Coder :: libclang :: Pandas :: scikit-learn :: UMAP :: TensorBoard :: Matplotlib :: Compute Canada</div>
           <div class="tags">#LLM #CodeUnderstanding #Research #Publication</div>
         </div>
       </article>
 
       <article class="proj-card">
         <header class="proj-head">
-          <h3>Stanbic Bank — Engineering Internship</h3>
-          <div class="proj-meta"><span class="role">NLP/Automation Project Work</span> · <span class="dates">2025 (9-month term)</span></div>
+          <h3>Software Engineering Intern — Stanbic Bank Ghana</h3>
+          <div class="proj-meta"><span class="role">Natural Language Processing / Applied AI</span> · <span class="dates">Summer 2024</span></div>
         </header>
-        <p class="one-liner">Contributed to retrieval-aware chatbot/document workflows and internal automation under engineering constraints.</p>
+        <p class="one-liner">I worked in Stanbic Bank Ghana’s software engineering environment on an exploratory NLP project focused on improving how an internal conversational system retrieved and used organizational-document information. The work emphasized document preparation, embeddings, retrieval, API integration, structured-data access, and response evaluation.</p>
+        <p><span class="ansi-cyan ansi-bold">[TECHNICAL WORK]</span></p>
+        <p>I helped assemble the document-to-retrieval path end-to-end: source preparation, embedding generation, semantic retrieval behavior, and service integration required to make conversational outputs usable in practice.</p>
+        <p><span class="ansi-cyan ansi-bold">[CONTRIBUTIONS]</span></p>
+        <ul class="highlights">
+          <li>I worked on a retrieval-augmented generation workflow that used vector embeddings to retrieve relevant material before response generation.</li>
+          <li>I helped prepare and structure source documents for retrieval and experimented with embedding-based semantic search behavior.</li>
+          <li>I evaluated whether retrieved passages and generated responses preserved intended source meaning rather than only lexical overlap.</li>
+          <li>I worked with REST APIs and enterprise automation tooling to connect the conversational workflow to supporting services and data.</li>
+          <li>I used SQL-backed user and operational information where structured data was required alongside document retrieval.</li>
+          <li>I prototyped and tested components in notebooks and small experiments before integration into broader workflows.</li>
+        </ul>
+        <p><span class="ansi-cyan ansi-bold">[SYSTEM PERSPECTIVE]</span></p>
+        <p>One of the strongest lessons from this internship was that LLM application quality depended on more than model selection: document segmentation and representation, embedding quality, retrieval relevance, external-service integration, structured-data access, and end-response evaluation all shaped system quality. This experience influenced how I later approached ML research as an end-to-end data and inference pipeline.</p>
         <div class="proj-foot">
-          <div class="tags">#NLP #RAG #Automation #Engineering</div>
+          <div class="stack"><span class="label">[STACK]</span> Python :: Embeddings :: Retrieval-Augmented Generation :: Semantic Search :: REST APIs :: SQL :: Jupyter :: Azure DevOps / Power Platform :: Copilot Studio</div>
+          <div class="tags">#NLP #RAG #Embeddings #SystemIntegration</div>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <header class="proj-head">
+          <h3>Engineering Intern — Stanbic Bank Ghana</h3>
+          <div class="proj-meta"><span class="role">Automation &amp; Software Prototyping</span> · <span class="dates">Aug 2022 – Sep 2022</span></div>
+        </header>
+        <p class="one-liner">An early engineering internship focused on software automation for repetitive operational workflows.</p>
+        <p><span class="ansi-cyan ansi-bold">[CONTRIBUTIONS]</span></p>
+        <ul class="highlights">
+          <li>I developed Python automation scripts for repetitive browser workflows using Selenium.</li>
+          <li>I experimented with conversational interfaces for common request handling and information routing.</li>
+          <li>I prototyped simple predictive/conversational approaches while learning how automation interacted with existing business processes.</li>
+          <li>I gained early experience translating operational problems into software tools within a professional engineering environment.</li>
+        </ul>
+        <div class="proj-foot">
+          <div class="stack"><span class="label">[STACK]</span> Python :: Selenium :: Browser Automation :: Basic NLP</div>
+          <div class="tags">#Automation #EngineeringInternship #Python</div>
         </div>
       </article>
     </div>
