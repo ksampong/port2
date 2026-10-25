@@ -101,6 +101,26 @@
 
           <article class="proj-card">
             <header class="proj-head">
+              <h3>AgentStudy — Multi-Agent Reliability &amp; Evaluation Platform</h3>
+              <div class="proj-meta"><span class="role">Independent Project</span> · <span class="dates">2026 – Present</span></div>
+            </header>
+            <p class="one-liner">AgentStudy is an experimental platform for understanding how tool-using AI agents behave across tools, shared state, external processes, and multi-step workflows.</p>
+            <ul class="highlights">
+              <li><span class="ansi-cyan">[SYSTEM ARCHITECTURE]</span> Built a modular two-agent Python system with OpenAI and Anthropic model/tool interfaces, LangGraph state transitions, shared workspace/state artifacts, Docker-isolated execution, and subprocess-based execution-worker integration.</li>
+              <li><span class="ansi-cyan">[OBSERVABILITY]</span> Added LangSmith tracing, structured event capture, and JSONL logging for state transitions, actions, tool outputs, failures, and recovery behavior to diagnose API/state/subprocess/Linux/Docker/network issues from execution traces.</li>
+              <li><span class="ansi-cyan">[EVALUATION STUDY]</span> Current dimensions include task completion, tool-use correctness, redundant actions, output consistency, shared-state persistence, failure modes, recovery behavior, and cross-run execution-path differences.</li>
+              <li><span class="ansi-cyan">[ENGINEERING FINDINGS]</span> Reliability was strongly affected by orchestration logic, tool-call quality, state handling, process boundaries, execution environments, networking, model nondeterminism, and poor strategic action selection even when execution was technically valid.</li>
+              <li><span class="ansi-cyan">[STATUS]</span> Platform architecture: <span class="ansi-green">working</span> · Structured tracing/logging: <span class="ansi-green">working</span> · Scenario-based evaluation: <span class="ansi-yellow">in development</span> · Formal evaluation methodology: <span class="ansi-yellow">ongoing</span>.</li>
+            </ul>
+            <div class="proj-foot">
+              <div class="stack"><span class="label">Stack:</span> Python :: LangGraph :: LangSmith :: OpenAI API :: Anthropic API :: Docker :: JSONL :: Subprocess Tooling :: Shared-State Systems :: Agent Evaluation</div>
+              <div class="tags">#Agents #Orchestration #Observability #Evaluation #Reliability</div>
+              <div class="updated">Last updated: 2026</div>
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <header class="proj-head">
               <h3>LLM Code Understanding Research</h3>
               <div class="proj-meta"><span class="role">Undergraduate Research Assistant</span> · <span class="dates">2025 – 2026</span></div>
             </header>
@@ -115,6 +135,28 @@
             <div class="proj-foot">
               <div class="stack"><span class="label">Stack:</span> Python, PyTorch, Hugging Face, libclang, scikit-learn, UMAP/t-SNE/PCA, TensorBoard</div>
               <div class="tags">#LLM #CodeUnderstanding #Embeddings #ProgramAnalysis #Research</div>
+              <div class="updated">Last updated: 2026</div>
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <header class="proj-head">
+              <h3>Reproducing the Linear Representation Hypothesis</h3>
+              <div class="proj-meta"><span class="role">Park, Choe &amp; Veitch — ICML 2024 · Independent Research Project</span> · <span class="dates">2026</span></div>
+            </header>
+            <p class="one-liner">Reproduction of <em>The Linear Representation Hypothesis and the Geometry of Large Language Models</em> using LLaMA-2-7B, with emphasis on independently verifying geometry and concept-direction construction before extending to interventions.</p>
+            <ul class="highlights">
+              <li><span class="ansi-cyan">[RESEARCH QUESTION]</span> Tested whether semantic concepts and relations are captured as approximately linear directions when representation geometry is defined by unembedding covariance; focused on independent reconstruction instead of trusting prior code paths.</li>
+              <li><span class="ansi-cyan">[GEOMETRY]</span> Extracted the LLaMA-2-7B unembedding matrix, computed covariance/covariance-whitened geometry, and reconstructed <span class="ansi-green">27 concept directions</span> from counterfactual word-pair sets (e.g., verb→3pSg, male→female, country→capital, thing→part).</li>
+              <li><span class="ansi-cyan">[VERIFICATION]</span> Implemented leave-one-out direction checks, compared against <span class="ansi-green">100,000 random-pair controls</span>, and reproduced matrix/direction sanity checks with agreement around <span class="ansi-green">~4 × 10⁻⁵</span>.</li>
+              <li><span class="ansi-cyan">[CONTEXTUAL MEASUREMENT]</span> Implemented a reduced CPU-compatible contextual-measurement stage as an intermediate validation step; full-scale contextual reproduction remains <span class="ansi-yellow">incomplete</span>.</li>
+              <li><span class="ansi-cyan">[INTERVENTION / DECODING]</span> Implemented representation-space intervention and top-token inspection, then identified a coordinate-conversion question between covariance-whitened space and LM-head coordinates; these stages are <span class="ansi-yellow">under validation</span>.</li>
+              <li><span class="ansi-cyan">[CURRENT STATUS]</span> Unembedding/covariance geometry <span class="ansi-green">[VERIFIED]</span> · 27 concept directions <span class="ansi-green">[VERIFIED]</span> · Leave-one-out + 100k controls <span class="ansi-green">[VERIFIED]</span> · Sanity checks (~4e-5) <span class="ansi-green">[VERIFIED]</span> · Contextual measurement <span class="ansi-yellow">[PARTIAL]</span> · Intervention <span class="ansi-yellow">[UNDER VALIDATION]</span> · Top-token decoding <span class="ansi-yellow">[UNDER VALIDATION]</span>.</li>
+              <li><span class="ansi-cyan">[WHY THIS PROJECT MATTERS]</span> The objective is independent audit discipline: reconstructing mathematics, verifying intermediate quantities, and not promoting downstream claims while coordinate-system validity is unresolved.</li>
+            </ul>
+            <div class="proj-foot">
+              <div class="stack"><span class="label">Stack:</span> Python :: PyTorch :: Hugging Face Transformers :: LLaMA-2-7B :: Linear Algebra :: Representation Geometry :: Statistical Controls :: Interpretability</div>
+              <div class="tags">#Interpretability #RepresentationLearning #Reproducibility #LLMResearch</div>
               <div class="updated">Last updated: 2026</div>
             </div>
           </article>
@@ -215,16 +257,6 @@
             </div>
           </article>
 
-          <article class="proj-card">
-            <header class="proj-head">
-              <h3>Research Reproduction Study — In Progress</h3>
-              <div class="proj-meta"><span class="role">Planned Research Build</span> · <span class="dates">Status: scoped, not executed</span></div>
-            </header>
-            <p class="one-liner">Reserved slot for a future Park study reproduction once paper selection, implementation details, and comparative results are complete.</p>
-            <div class="proj-foot">
-              <div class="tags">#InProgress #ReproductionStudy</div>
-            </div>
-          </article>
         </div>
       </div>
     </div>
@@ -254,6 +286,51 @@
           <div class="stack"><span class="label">[STACK]</span> Python :: Pandas :: SQL :: SQLite :: Excel :: REST APIs :: Jotform</div>
           <div class="tags">#DataEngineering #DataOps #KYC #Migration #Automation</div>
           <div class="updated">Last updated: Summer 2026</div>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <header class="proj-head">
+          <h3>Experimental Development &amp; AI-Based Leak Detection for Smart Pipeline Systems</h3>
+          <div class="proj-meta"><span class="role">Work Study Research Assistant — University of Guelph</span> · <span class="dates">September 2026 – Present</span></div>
+        </header>
+        <p class="one-liner">I work on development and evaluation of a laboratory-scale smart pipeline system for leak-detection research across sensing, experiment execution, data validation, machine-learning analysis, and communication architecture. A core focus has been validating the sensing/data path before treating downstream ML outputs as meaningful.</p>
+        <p><span class="ansi-cyan ansi-bold">[EXPERIMENTAL SYSTEM]</span></p>
+        <ul class="highlights">
+          <li>Integrated inlet/outlet flow sensing with pressure measurements into a unified acquisition workflow.</li>
+          <li>Worked with Arduino/ESP-based sensing hardware, serial communication, and structured time-series logging.</li>
+          <li>Participated in physical leak experiments across single-, double-, and triple-leak configurations.</li>
+          <li>Troubleshot wiring faults, serial-port failures, invalid readings, and experiment conditions that produced unusable data.</li>
+          <li>This is hands-on physical-system work, not model training over a static benchmark dataset.</li>
+        </ul>
+        <p><span class="ansi-cyan ansi-bold">[DATA PIPELINE]</span></p>
+        <ul class="highlights">
+          <li>Built preprocessing/validation workflows for experimental flow-pressure datasets.</li>
+          <li>Reconciled inconsistent column layouts across runs and separated datasets by valve/rotation configuration.</li>
+          <li>Removed missing/invalid records, aligned measurements across experiments, and standardized features for training.</li>
+          <li>Validated derived leak-flow targets against underlying sensor measurements and flagged anomalous runs traceable to sensing/collection issues.</li>
+          <li>Initial target definition used inlet-outlet flow difference; because those values directly define the target, reduced-input/alternative model experiments were used to avoid over-crediting low error from encoded arithmetic structure.</li>
+        </ul>
+        <p><span class="ansi-cyan ansi-bold">[MODELLING]</span></p>
+        <ul class="highlights">
+          <li>Built neural-network regression models using flow and pressure measurements.</li>
+          <li>Compared four-input and reduced two-input feature sets and tested different network depths.</li>
+          <li>Added scaling/cleaning stages after diagnosing NaN and unstable training behavior.</li>
+          <li>Evaluated with numeric metrics and predicted-vs-actual analysis to inspect both model behavior and experiment quality.</li>
+          <li>Model development and experimental refinement remain <span class="ansi-yellow">ongoing</span>; this is not yet a production leak detector.</li>
+        </ul>
+        <p><span class="ansi-cyan ansi-bold">[SYSTEM COMMUNICATION]</span></p>
+        <ul class="highlights">
+          <li>Developed an OPC UA architecture for exposing live measurements and control variables.</li>
+          <li>Evaluated embedded-hosted OPC UA versus serial-to-OPC UA conversion on the logging computer.</li>
+          <li>Implemented/tested serial parsing needed to package live measurements into OPC UA nodes.</li>
+          <li>Contributed to proposed four-tank control-system architecture covering sensing, pumps, valves, flow/level measurements, command channels, and alarm/event representation.</li>
+        </ul>
+        <p><span class="ansi-cyan ansi-bold">[ENGINEERING APPROACH]</span></p>
+        <p>This project treats physical-system ML as an end-to-end engineering problem: model metrics are only credible when sensing, experiment execution, acquisition, preprocessing, and target definition are validated together.</p>
+        <div class="proj-foot">
+          <div class="stack"><span class="label">[STACK]</span> Python :: Pandas :: TensorFlow/Keras :: Arduino :: ESP32 :: Serial Communication :: Flow &amp; Pressure Sensors :: OPC UA :: Experimental Data Analysis :: Regression</div>
+          <div class="tags">#SmartPipeline #LeakDetection #PhysicalSystemsML #OPCUA #EmbeddedSensing</div>
         </div>
       </article>
 
